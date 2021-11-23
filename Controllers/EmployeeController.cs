@@ -8,7 +8,7 @@ using Myapplication.Models;
 namespace Myapplication.Controllers
     {
   
-    [Route("[controller]")]
+    //[Route("[controller]")]
     public class EmployeeController : Controller
         {
         private IEmployeeRepository m_employeeRepository;
@@ -16,8 +16,8 @@ namespace Myapplication.Controllers
             {
             m_employeeRepository = employeeRepository;
             }
+
         [HttpGet]
-        [Route("[action]/{id}")]
         public JsonResult Get (int id)
             {
             JsonResult jsonResult = default(JsonResult);
@@ -34,8 +34,7 @@ namespace Myapplication.Controllers
             return jsonResult;
             }
         [HttpGet]
-        [Route("[action]")]
-        public JsonResult Get ()
+        public JsonResult GetAll ()
             {
             JsonResult jsonResult = default(JsonResult);
             IEnumerable<EmployeeClass> modelObject = m_employeeRepository.GetAllEmployees();
@@ -51,7 +50,7 @@ namespace Myapplication.Controllers
             return jsonResult;
             }
 
-        [Route("[action]/{id}")]
+      
         public JsonResult Delete (int id)
             {
             JsonResult jsonResult = default(JsonResult);
@@ -67,7 +66,7 @@ namespace Myapplication.Controllers
                 }
             return jsonResult;
             }
-        [Route("[action]")]
+        
         [HttpPost]
         public JsonResult Post ([FromBody] EmployeeClass employeeObject)
             {
